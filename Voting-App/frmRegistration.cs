@@ -48,10 +48,7 @@ namespace Voting_App
                 if (rtnMsg.Contains("registered"))
                     MessageBox.Show("Your Account has been successfully created", "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
-                    // if error log?
-                    // else
-                    MessageBox.Show("Username taken", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show(rtnMsg, "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

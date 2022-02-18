@@ -18,10 +18,13 @@ namespace Voting_App
         private Voter voter;
 
         List<Election> elections = new List<Election>();
+        User _loggedInUser = new User();
 
         public frmMiniRegister(User loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
+
             LoadElectionList();
 
             //var serializedParent = JsonConvert.SerializeObject(loggedInUser);
@@ -87,7 +90,10 @@ namespace Voting_App
 
         private void LoadElectionList()
         {
-            elections = SqliteDataAccess.LoadElections();
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmMiniRegister", "LoadElectionList");
+
+            elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
             WireUpElectionList();
         }
 
@@ -97,7 +103,6 @@ namespace Voting_App
             dropdownElectionList.DataSource = elections;
             dropdownElectionList.DisplayMember = "ElectionName"; // Column Name
             dropdownElectionList.ValueMember = "ElectionId";
-
         }
 
 

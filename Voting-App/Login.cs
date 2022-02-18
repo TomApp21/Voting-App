@@ -23,6 +23,7 @@ namespace Voting_App
             User loginUser = new User();
             loginUser.Username = txtUsername.Text;
             loginUser.Password = txtBoxPassword.Text;
+            loginUser.Error = HelperClass.PopulateErrorModel("frmLogin", "btnLogIn_Click");
 
             User loggedInUser = SqliteDataAccess.Login(loginUser);
 

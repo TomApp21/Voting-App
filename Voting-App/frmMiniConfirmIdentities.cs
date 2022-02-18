@@ -14,10 +14,12 @@ namespace Voting_App
     public partial class frmMiniConfirmIdentities : Form
     {
         Voter selectedVoter = new Voter();
+        User _loggedInUser = new User();
 
         public frmMiniConfirmIdentities(User loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
             LoadUsersList();
         }
 
@@ -26,8 +28,10 @@ namespace Voting_App
 
         private void LoadUsersList()
         {
-            voters = SqliteDataAccess.LoadVotersList();
-
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "LoadUsersList");
+            
+            voters = SqliteDataAccess.LoadVotersList(thisModel, _loggedInUser.Id);
             WireUpVotersList();
         }
 
@@ -36,14 +40,24 @@ namespace Voting_App
             listElectionListBox.DataSource = null;
             listElectionListBox.DataSource = voters;
             listElectionListBox.DisplayMember = "FullName";
-            listElectionListBox.ValueMember = "NINumber";
+            listElectionListBox.ValueMember = "Id";
 
-            WireUpVotersDetailBoxes((string)listElectionListBox.SelectedValue);
+            if (voters.Count != 0)
+            {
+                WireUpVotersDetailBoxes((int)listElectionListBox.SelectedValue);
+                btnApprove.Enabled = true;
+                btnDeny.Enabled = true;
+            }
+            else
+            {
+                btnApprove.Enabled = false;
+                btnDeny.Enabled = false;
+            }
         }
 
-        private void WireUpVotersDetailBoxes(string niNumber)
+        private void WireUpVotersDetailBoxes(int selectedVoterId)
         {
-            selectedVoter = SqliteDataAccess.GetVoterDetails(niNumber);
+            selectedVoter = SqliteDataAccess.GetVoterDetails(selectedVoterId);
 
             if (selectedVoter != null)
             {
@@ -53,7 +67,10 @@ namespace Voting_App
                 txtBoxDob.Text = selectedVoter.DateOfBirth;
                 txtNatIns.Text = selectedVoter.NINumber;
 
-                txtElection.Text = SqliteDataAccess.LoadElection(selectedVoter.EligibleForElectionId).ElectionName.ToString();
+                ErrorModel thisErrorModel = new ErrorModel();
+                thisErrorModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "WireUpVotersDetailBoxes");
+
+                txtElection.Text = SqliteDataAccess.LoadElection(selectedVoter.EligibleForElectionId, thisErrorModel).ElectionName.ToString();
             }
         }
 
@@ -63,9 +80,9 @@ namespace Voting_App
         {
             listElectionListBox.SelectedIndex = 0;
             selectedVoter = (Voter)listElectionListBox.SelectedItem;
-            string niNumber = selectedVoter.NINumber.ToString();
+            int selectedVoterId = selectedVoter.Id;
 
-            WireUpVotersDetailBoxes(niNumber);
+            WireUpVotersDetailBoxes(selectedVoterId);
         }
 
         private async void btnApprove_Click(object sender, EventArgs e)

@@ -25,6 +25,12 @@ namespace VotingLibrary
 
         #region Elections
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="thisModel"></param>
+        /// <returns></returns>
         public static Election LoadElection(int id, ErrorModel thisModel)
         {
             Election election = new Election();
@@ -39,7 +45,6 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
-                // add log
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
                 thisModel.UserId = id;
@@ -50,7 +55,7 @@ namespace VotingLibrary
             }
         }
 
-        public static List<Election> LoadElections()
+        public static List<Election> LoadElections(ErrorModel thisModel, int loggedInUserId)
         {
             List<Election> elections = new List<Election>();
 
@@ -62,14 +67,19 @@ namespace VotingLibrary
                     return query.ToList();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // add log
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+
+                LogError(thisModel);
+
                 return elections;
             }
         }
 
-        public static async Task SaveElection(Election election)
+        public static async Task SaveElection(Election election, ErrorModel thisModel, int loggedInUserId)
         {
             try
             {
@@ -78,9 +88,13 @@ namespace VotingLibrary
                     conn.Execute("insert into Elections (ElectionName, StartDate, EndDate) values (@ElectionName, @StartDate, @EndDate) ", election);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // add log
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+
+                LogError(thisModel);
             }
         }
 
@@ -104,7 +118,6 @@ namespace VotingLibrary
             {
                 user.Error.ExceptionMessage = ex.Message;
                 user.Error.TimeOfError = DateTime.Now.ToString();
-                user.Error.UserId = user.Id;
 
                 LogError(user.Error);
 
@@ -125,6 +138,10 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex) 
             {
+                user.Error.ExceptionMessage = ex.Message;
+                user.Error.TimeOfError = DateTime.Now.ToString();
+
+                LogError(user.Error);
                 return loggedInUser;
             }
         }
@@ -133,17 +150,15 @@ namespace VotingLibrary
 
         #region Confirm Identity
 
-        /// REMOVEEEEEEEEEEEEEEEEEEEEEEEEE
-        public static Voter GetVoterDetails(string niNumber)
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = conn.Query<Voter>($"SELECT * FROM Users Where NINumber= @NINumber", new { NINumber = niNumber  });
-
-                return output.FirstOrDefault();
-            }
-        }
-        public static Voter GetVoterDetails(int id)
+ 
+        /// <summary>
+        /// Retrieves details associated with a voter
+        /// </summary>
+        /// <param name="thisModel">Error Model</param>
+        /// <param name="id">Id of voter to retrieve</param>
+        /// <param name="loggedInUserId">Logged in user id</param>
+        /// <returns></returns>
+        public static Voter GetVoterDetails(ErrorModel thisModel, int id, int loggedInUserId)
         {
             Voter output = null;
             try
@@ -156,11 +171,20 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+                LogError(thisModel);
+
                 return output;
             }
         }
 
-        public static List<Voter> LoadVotersList()
+        /// <summary>
+        /// Loads voters who are awaiting identity confirmatiom.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Voter> LoadVotersList(ErrorModel thisModel, int loggedInUserId)
         {
             List<Voter> voters = new List<Voter>();
             try
@@ -173,6 +197,7 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
+
                 return voters;
             }
         }

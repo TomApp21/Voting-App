@@ -17,10 +17,12 @@ namespace Voting_App
         List<Candidate> candidates = new List<Candidate>();
 
         Election selectedElection = new Election();
+        User _loggedInUser = new User();
 
         public frmViewElScores(User loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
             LoadElectionList();
 
             selectedElection = (Election)dropdownElectionList.SelectedItem;
@@ -30,7 +32,8 @@ namespace Voting_App
 
         private void LoadElectionList()
         {
-            elections = SqliteDataAccess.LoadElections();
+            ErrorModel thisModel = new ErrorModel();
+            elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
 
             WireUpElectionList();
         }

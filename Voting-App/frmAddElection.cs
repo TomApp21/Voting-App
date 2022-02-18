@@ -14,17 +14,25 @@ namespace Voting_App
     public partial class frmAddElection : Form
     {
         List<Election> elections = new List<Election>();
+        User _loggedInUser = new User();
 
         public frmAddElection(User loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
+
             LoadElectionList();
+
+
         }
 
 
         private void LoadElectionList()
         {
-            elections = SqliteDataAccess.LoadElections();
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmAddElection", "LoadElectionList");
+
+            elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
 
             WireUpElectionList();
         }
@@ -61,7 +69,10 @@ namespace Voting_App
 
         private async Task SaveElection(Election election)
         {
-            await SqliteDataAccess.SaveElection(election);
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmAddElection", "SaveElection");
+
+            await SqliteDataAccess.SaveElection(election, thisModel, _loggedInUser.Id);
         }
     }
 }

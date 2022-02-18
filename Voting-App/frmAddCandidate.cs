@@ -19,11 +19,14 @@ namespace Voting_App
         Candidate selectedCandidate = new Candidate();
         Election selectedElection = new Election();
 
+        User _loggedInUser = new User();
 
         public frmAddCandidate(User loggedInUser)
         {
             InitializeComponent();
             LoadElectionList();
+
+            _loggedInUser = loggedInUser;
 
             selectedElection = (Election)dropdownElectionList.SelectedItem;
             LoadCandidatesList(selectedElection.ElectionId);
@@ -32,7 +35,12 @@ namespace Voting_App
 
         private void LoadElectionList()
         {
-            elections = SqliteDataAccess.LoadElections();
+            // Declare error model to be passed to DAL
+            // ---------------------------------------
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmAddCandidate", "LoadElectionList");
+
+            elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
 
             WireUpElectionList();
         }

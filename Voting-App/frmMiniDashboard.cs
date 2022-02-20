@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VotingLibrary;
 
 namespace Voting_App
 {
     public partial class frmMiniDashboard : Form
     {
-        public frmMiniDashboard()
+        public frmMiniDashboard(User loggedInUser)
         {
             InitializeComponent();
         }

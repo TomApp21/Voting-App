@@ -43,20 +43,23 @@ namespace Voting_App
 
             if (!loggedInVoter.IdentityConfirmed)
             {
-                listCandidateListBox.Hide();
-                btnCastVote.Hide();
-                lblCandidates.Hide();
                 lblVotingCloses.Text = "Awaiting ID verification";
             }
             else if (loggedInVoter.HasVoted)
             {
-                listCandidateListBox.Hide();
-                btnCastVote.Hide();
-                lblCandidates.Hide();
                 lblVotingCloses.Text = "You have already cast a vote for this election";
             }
+            else if(Convert.ToDateTime(eligibleElection.EndDate).AddDays(1) < DateTime.Now)
+            {
+                lblVotingCloses.Text = "Voting has now closed for this election";
+            }
             else
+            {
+                listCandidateListBox.Show();
+                btnCastVote.Show();
+                lblCandidates.Show();
                 LoadCandidatesList();
+            }
 
         }
 

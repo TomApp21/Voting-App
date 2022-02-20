@@ -28,9 +28,15 @@ namespace Voting_App
 
             LoadElectionList();
 
+            if (elections.Count != 0)
+            {
+                selectedElection = (Election)dropdownElectionList.SelectedItem;
+                LoadCandidatesList(selectedElection.ElectionId);
+                btnAddCandidate.Show();
+            }
+            else
+                lblEligibleElection.Show();
 
-            selectedElection = (Election)dropdownElectionList.SelectedItem;
-            LoadCandidatesList(selectedElection.ElectionId);
 
         }
 
@@ -41,11 +47,23 @@ namespace Voting_App
             ErrorModel thisModel = new ErrorModel();
             thisModel = HelperClass.PopulateErrorModel("frmAddCandidate", "LoadElectionList");
 
+            // Retrieve Elections
+            // ------------------
             elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
 
+            // Remove elections that have ended
+            // --------------------------------
+            foreach (Election election in elections.ToList())
+            {
+                if (Convert.ToDateTime(election.StartDate) < DateTime.Now)
+                    elections.Remove(election);
+            }    
             WireUpElectionList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void WireUpElectionList()
         {
             dropdownElectionList.DataSource = null;
@@ -99,12 +117,7 @@ namespace Voting_App
             listCandidateListBox.DataSource = null;
             listCandidateListBox.DataSource = candidates;
             listCandidateListBox.DisplayMember = "CandidateName";
-            listCandidateListBox.ValueMember = "CandidateId";        
-        }
-
-        private void btnRefreshList_Click(object sender, EventArgs e)
-        {
-            LoadCandidatesList(selectedCandidate.ElectionId);
+            listCandidateListBox.ValueMember = "CandidateId";
         }
     }
 }

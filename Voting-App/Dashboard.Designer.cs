@@ -322,7 +322,7 @@
             this.lblTitle.Location = new System.Drawing.Point(30, 26);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(214, 44);
+            this.lblTitle.Size = new System.Drawing.Size(213, 44);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Dashboard";
             // 

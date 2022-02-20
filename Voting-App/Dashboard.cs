@@ -42,31 +42,27 @@ namespace Voting_App
 
             lblUsername.Text = "Hello " + loggedInUser.Username;
 
-            //if (loggedInUser.IsAdmin)
-            //{
-            //    btnRegister.Visible = false;
-            //    btnCastVote.Visible = false;
-            //    btnViewElectionVoters.Visible = false;
-            //    btnViewElectionScores.Visible = false;
-            //}
-            //if (!loggedInUser.IsAdmin && !loggedInUser.IsAuditor)
-            //{
-            //    btnAddCandidates.Visible = false;
-            //    btnAddElection.Visible = false;
-            //    btnConfirmIdentity.Visible = false;
-            //    btnViewElectionVoters.Visible = false;
-            //    btnViewElectionScores.Visible = false;
-
-            //}
-            //if (loggedInUser.IsAuditor || loggedInUser.IsAdmin)
-            //{
-            //    btnAddCandidates.Visible = false;
-            //    btnAddElection.Visible = false;
-            //    btnConfirmIdentity.Visible = false;
-            //    btnRegister.Visible = false;
-            //    btnCastVote.Visible = false;
-            //}
-
+            if (loggedInUser.IsAdmin)
+            {
+                btnRegister.Visible = false;
+                btnCastVote.Visible = false;
+                btnViewElectionScores.Visible = false;
+            }
+            if (loggedInUser.IsAuditor)
+            {
+                btnAddCandidates.Visible = false;
+                btnAddElection.Visible = false;
+                btnRegister.Visible = false;
+                btnCastVote.Visible = false;
+                btnConfirmIdentity.Visible = false;
+            }
+            if (loggedInUser.IsVoter)
+            {
+                btnAddCandidates.Visible = false;
+                btnAddElection.Visible = false;
+                btnConfirmIdentity.Visible = false;
+                btnViewElectionScores.Visible = false;
+            }
 
 
 
@@ -78,7 +74,7 @@ namespace Voting_App
 
             lblTitle.Text = "Dashboard";
             this.pnlFormLoader.Controls.Clear();
-            frmMiniDashboard FrmDashboard_Vrb = new frmMiniDashboard() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmMiniDashboard FrmDashboard_Vrb = new frmMiniDashboard(loggedInUser) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlFormLoader.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
@@ -99,7 +95,7 @@ namespace Voting_App
 
             lblTitle.Text = "Dashboard";
             this.pnlFormLoader.Controls.Clear();
-            frmMiniDashboard FrmDashboard_Vrb = new frmMiniDashboard() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmMiniDashboard FrmDashboard_Vrb = new frmMiniDashboard(loggedInUser) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlFormLoader.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();

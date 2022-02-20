@@ -15,6 +15,8 @@ namespace Voting_App
     {
         Voter selectedVoter = new Voter();
         User _loggedInUser = new User();
+        List<Voter> voters = new List<Voter>();
+
 
         public frmMiniConfirmIdentities(User loggedInUser)
         {
@@ -22,9 +24,6 @@ namespace Voting_App
             _loggedInUser = loggedInUser;
             LoadUsersList();
         }
-
-        List<Voter> voters = new List<Voter>();
-
 
         private void LoadUsersList()
         {
@@ -129,16 +128,6 @@ namespace Voting_App
             await showProcessedMsg();
             clearTextBoxes();
             LoadUsersList();
-
-
-
-            // clear text boxes if no identities left to be confirmed
-            // ------------------------------------------------------
-            //if (voters == null)
-            //    clearTextBoxes();
-
-
-
         }
 
         private async Task showProcessedMsg()

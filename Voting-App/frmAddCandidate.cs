@@ -88,7 +88,9 @@ namespace Voting_App
 
         private void LoadCandidatesList(int electionId)
         {
-            candidates = SqliteDataAccess.LoadCandidates(electionId);
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmAddCandidate", "LoadCandidatesList");
+            candidates = SqliteDataAccess.LoadCandidates(thisModel, electionId, _loggedInUser.Id);
             WireUpCandidateList();
         }
 

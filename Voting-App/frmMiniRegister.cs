@@ -75,7 +75,9 @@ namespace Voting_App
 
                     // add bool return for 
 
-                    SqliteDataAccess.RegisterVoter(voter);
+                    ErrorModel thisModel = new ErrorModel();
+
+                    SqliteDataAccess.RegisterVoter(thisModel, voter, _loggedInUser.Id);
 
                     btnRegister.Enabled = false;
                     lblRegistrationComplete.Visible = true;

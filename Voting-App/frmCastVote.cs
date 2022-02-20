@@ -17,10 +17,13 @@ namespace Voting_App
         List<Candidate> candidates = new List<Candidate>();
         Election eligibleElection = new Election();
         Voter loggedInVoter;
+        User _loggedInUser;
 
-        public frmCastVote(User _loggedInUser)
+        public frmCastVote(User loggedInUser)
         {
             InitializeComponent();
+
+            _loggedInUser = loggedInUser;
 
             ErrorModel errorModel = new ErrorModel();
             errorModel = HelperClass.PopulateErrorModel("frmCastVote", "Constructor");
@@ -60,7 +63,10 @@ namespace Voting_App
 
         private void LoadCandidatesList()
         {
-            candidates = SqliteDataAccess.LoadCandidates(eligibleElection.ElectionId);
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmCastVote", "LoadCandidatesList");
+
+            candidates = SqliteDataAccess.LoadCandidates(thisModel, eligibleElection.ElectionId, _loggedInUser.Id);
             WireUpCandidateList();
         }
 
@@ -75,7 +81,10 @@ namespace Voting_App
 
         private void btnCastVote_Click(object sender, EventArgs e)
         {
-            bool blnSuccess = SqliteDataAccess.CastVote(loggedInVoter.Id, (int)listCandidateListBox.SelectedValue);
+            ErrorModel errorModel = new ErrorModel();
+            errorModel = HelperClass.PopulateErrorModel("frmCastVote", "btnCastVote_Click");
+
+            bool blnSuccess = SqliteDataAccess.CastVote(errorModel, loggedInVoter.Id, (int)listCandidateListBox.SelectedValue);
 
             listCandidateListBox.Hide();
             btnCastVote.Hide();

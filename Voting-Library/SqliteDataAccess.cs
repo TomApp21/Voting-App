@@ -197,40 +197,50 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+                LogError(thisModel);
 
                 return voters;
             }
         }
 
-        public static void ApproveVoterIdentity(int id)
+        public static void ApproveVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
         {
             try
             {
                 using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
                 {
                     var output = conn.Query<User>($"UPDATE Users SET IdentityConfirmed=@IdentityConfirmed WHERE Id=@Id",
-                        new { IdentityConfirmed = 1, Id = id });
+                        new { IdentityConfirmed = 1, Id = voterId });
                 }
             }
             catch (Exception ex)
             {
-
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+                LogError(thisModel);
             }
         }
 
-        public static void DenyVoterIdentity(int id)
+        public static void DenyVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
         {
             try
             {
                 using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
                 {
                     var output = conn.Query<User>($"UPDATE Users SET IdentityConfirmed=@IdentityConfirmed WHERE Id=@Id",
-                        new { IdentityConfirmed = 0, Id = id });
+                        new { IdentityConfirmed = 0, Id = voterId });
                 }
             }
             catch (SQLiteException ex)
             {
-
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+                LogError(thisModel);
             }
         }
 
@@ -240,7 +250,7 @@ namespace VotingLibrary
         #region Register Voter
 
 
-        public static void RegisterVoter(Voter voter)
+        public static void RegisterVoter(ErrorModel thisModel, Voter voter, int loggedInUserId)
         {
             try
             {
@@ -252,7 +262,10 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
-
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+                LogError(thisModel);
             }
 
         }
@@ -261,7 +274,7 @@ namespace VotingLibrary
         #endregion
 
         #region Cast Vote
-        public static bool CastVote(int voterId, int candidateId)
+        public static bool CastVote(ErrorModel thisModel, int voterId, int candidateId)
         {
             Boolean blnReturn = false;
 
@@ -283,7 +296,11 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
-                // log
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = voterId;
+                LogError(thisModel);
+
                 return blnReturn;
             }
         }
@@ -293,7 +310,7 @@ namespace VotingLibrary
 
         #region Candidates
 
-        public static List<Candidate> LoadCandidates(int electionId)
+        public static List<Candidate> LoadCandidates(ErrorModel thisModel, int electionId, int loggedInUserId)
         {
             List<Candidate> candidates = new List<Candidate>();
             try
@@ -306,7 +323,11 @@ namespace VotingLibrary
             }
             catch (SQLiteException ex)
             {
-                // add log
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = loggedInUserId;
+                LogError(thisModel);
+
                 return candidates;
             }
         }

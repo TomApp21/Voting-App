@@ -48,7 +48,11 @@ namespace Voting_App
 
         private void LoadChartCandidates(int electionId)
         {
-            candidates = SqliteDataAccess.LoadCandidates(electionId);
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmViewElScores", "LoadChartCandidates");
+
+
+            candidates = SqliteDataAccess.LoadCandidates(thisModel, electionId, _loggedInUser.Id);
             
             WireUpElectionScoreChart();
         }

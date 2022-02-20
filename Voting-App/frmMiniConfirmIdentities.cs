@@ -91,7 +91,10 @@ namespace Voting_App
         {
             if (voters != null)
             {
-                SqliteDataAccess.ApproveVoterIdentity(selectedVoter.Id);
+                ErrorModel errorModel = new ErrorModel();
+                errorModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "btnApprove_Click");
+
+                SqliteDataAccess.ApproveVoterIdentity(errorModel, selectedVoter.Id, _loggedInUser.Id);
                 lblConfirmation.Text = selectedVoter.FullName + "'s identity has been confirmed.";
 
                 lblConfirmation.Visible = true;
@@ -110,7 +113,11 @@ namespace Voting_App
 
         private async void btnDeny_Click(object sender, EventArgs e)
         {
-            SqliteDataAccess.DenyVoterIdentity(selectedVoter.Id);
+            ErrorModel errorModel = new ErrorModel();
+            errorModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "btnDeny_Click");
+
+
+            SqliteDataAccess.DenyVoterIdentity(errorModel, selectedVoter.Id, _loggedInUser.Id);
             lblConfirmation.Text = selectedVoter.FullName + "'s identity has been denied.";
 
             lblConfirmation.Visible = true;

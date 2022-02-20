@@ -7,11 +7,12 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Voting_Library;
 using VotingLibrary;
 
 namespace VotingLibrary
 {
-    public class SqliteDataAccess
+    public class SqliteDataAccess : ISqliteDataAccess
     {
         public SqliteDataAccess()
         {
@@ -31,7 +32,7 @@ namespace VotingLibrary
         /// <param name="id"></param>
         /// <param name="thisModel"></param>
         /// <returns></returns>
-        public static Election LoadElection(int id, ErrorModel thisModel)
+        public Election LoadElection(int id, ErrorModel thisModel, int userId)
         {
             Election election = new Election();
 
@@ -39,15 +40,15 @@ namespace VotingLibrary
             {
                 using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    var query= conn.Query<Election>("select * from Elections WHERE ElectionId=@ElectionId", new { ElectionId = id });
+                    var query= conn.Query<Election>("select * from Elections WHERE ElectionId=@Electiond", new { ElectionId = id });
                     return query.FirstOrDefault();
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
-                thisModel.UserId = id;
+                thisModel.UserId = userId;
 
                 LogError(thisModel);
 
@@ -55,7 +56,7 @@ namespace VotingLibrary
             }
         }
 
-        public static List<Election> LoadElections(ErrorModel thisModel, int loggedInUserId)
+        public List<Election> LoadElections(ErrorModel thisModel, int loggedInUserId)
         {
             List<Election> elections = new List<Election>();
 
@@ -79,7 +80,7 @@ namespace VotingLibrary
             }
         }
 
-        public static async Task SaveElection(Election election, ErrorModel thisModel, int loggedInUserId)
+        public async Task SaveElection(Election election, ErrorModel thisModel, int loggedInUserId)
         {
             try
             {
@@ -103,7 +104,7 @@ namespace VotingLibrary
 
         #region Register & Login
 
-        public static string Register(User user)
+        public string Register(User user)
         {
             string rtnMsg;
             try
@@ -124,7 +125,7 @@ namespace VotingLibrary
                 return rtnMsg = ex.Message;
             }
         }
-        public static User Login(User user)
+        public User Login(User user)
         {
             User loggedInUser = new User();
 
@@ -136,7 +137,7 @@ namespace VotingLibrary
                     return query;
                 }
             }
-            catch (SQLiteException ex) 
+            catch (Exception ex) 
             {
                 user.Error.ExceptionMessage = ex.Message;
                 user.Error.TimeOfError = DateTime.Now.ToString();
@@ -158,7 +159,7 @@ namespace VotingLibrary
         /// <param name="id">Id of voter to retrieve</param>
         /// <param name="loggedInUserId">Logged in user id</param>
         /// <returns></returns>
-        public static Voter GetVoterDetails(ErrorModel thisModel, int id, int loggedInUserId)
+        public Voter GetVoterDetails(ErrorModel thisModel, int id, int loggedInUserId)
         {
             Voter output = null;
             try
@@ -169,7 +170,7 @@ namespace VotingLibrary
                     return query.FirstOrDefault();
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
@@ -184,7 +185,7 @@ namespace VotingLibrary
         /// Loads voters who are awaiting identity confirmatiom.
         /// </summary>
         /// <returns></returns>
-        public static List<Voter> LoadVotersList(ErrorModel thisModel, int loggedInUserId)
+        public List<Voter> LoadVotersList(ErrorModel thisModel, int loggedInUserId)
         {
             List<Voter> voters = new List<Voter>();
             try
@@ -195,7 +196,7 @@ namespace VotingLibrary
                     return output.ToList();
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
@@ -206,7 +207,7 @@ namespace VotingLibrary
             }
         }
 
-        public static void ApproveVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
+        public void ApproveVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
         {
             try
             {
@@ -225,7 +226,7 @@ namespace VotingLibrary
             }
         }
 
-        public static void DenyVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
+        public void DenyVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
         {
             try
             {
@@ -235,7 +236,7 @@ namespace VotingLibrary
                         new { IdentityConfirmed = 0, Id = voterId });
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
@@ -250,7 +251,7 @@ namespace VotingLibrary
         #region Register Voter
 
 
-        public static void RegisterVoter(ErrorModel thisModel, Voter voter, int loggedInUserId)
+        public void RegisterVoter(ErrorModel thisModel, Voter voter, int loggedInUserId)
         {
             try
             {
@@ -260,7 +261,7 @@ namespace VotingLibrary
                         new { FirstName = voter.FirstName, Id = voter.Id, LastName = voter.LastName, AddressLine1 = voter.AddressLine1, AddressLine2 = voter.AddressLine2, Postcode = voter.Postcode, DateOfBirth = voter.DateOfBirth, NINumber = voter.NINumber, Eid = voter.EligibleForElectionId });
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
@@ -274,7 +275,7 @@ namespace VotingLibrary
         #endregion
 
         #region Cast Vote
-        public static bool CastVote(ErrorModel thisModel, int voterId, int candidateId)
+        public bool CastVote(ErrorModel thisModel, int voterId, int candidateId)
         {
             Boolean blnReturn = false;
 
@@ -294,7 +295,7 @@ namespace VotingLibrary
                     return blnReturn;
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
@@ -310,7 +311,7 @@ namespace VotingLibrary
 
         #region Candidates
 
-        public static List<Candidate> LoadCandidates(ErrorModel thisModel, int electionId, int loggedInUserId)
+        public List<Candidate> LoadCandidates(ErrorModel thisModel, int electionId, int loggedInUserId)
         {
             List<Candidate> candidates = new List<Candidate>();
             try
@@ -321,7 +322,7 @@ namespace VotingLibrary
                     return query.ToList();
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 thisModel.ExceptionMessage = ex.Message;
                 thisModel.TimeOfError = DateTime.Now.ToString();
@@ -332,7 +333,7 @@ namespace VotingLibrary
             }
         }
 
-        public static async Task SaveCandidate(Candidate candidate)
+        public async Task SaveCandidate(ErrorModel thisModel, Candidate candidate, int userId)
         {
             try
             {
@@ -341,8 +342,12 @@ namespace VotingLibrary
                     conn.Execute("insert into Candidates (CandidateName, VoteCount, ElectionId) values (@CandidateName, @VoteCount, @ElectionId) ", candidate);
                 }
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
+                thisModel.ExceptionMessage = ex.Message;
+                thisModel.TimeOfError = DateTime.Now.ToString();
+                thisModel.UserId = userId;
+                LogError(thisModel);
             }
         }
 
@@ -352,7 +357,7 @@ namespace VotingLibrary
 
         #region Error Logging 
 
-        public static string LogError(ErrorModel error)
+        public string LogError(ErrorModel error)
         {
             string rtnMsg;
             try
@@ -365,7 +370,6 @@ namespace VotingLibrary
             }
             catch (Exception ex)
             {
-                // show pop=up? 
                 return rtnMsg = ex.Message;
             }
         }
@@ -375,7 +379,7 @@ namespace VotingLibrary
 
         // Demo Functions
         // --------------
-        public static List<PersonModel> LoadPeople()
+        public List<PersonModel> LoadPeople()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -384,7 +388,7 @@ namespace VotingLibrary
             }
         }
 
-        public static void SavePerson(PersonModel person)
+        public void SavePerson(PersonModel person)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {

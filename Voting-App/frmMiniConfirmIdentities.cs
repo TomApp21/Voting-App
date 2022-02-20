@@ -71,7 +71,7 @@ namespace Voting_App
                 ErrorModel thisErrorModel = new ErrorModel();
                 thisErrorModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "WireUpVotersDetailBoxes");
 
-                txtElection.Text = SqliteDataAccess.LoadElection(selectedVoter.EligibleForElectionId, thisErrorModel).ElectionName.ToString();
+                txtElection.Text = SqliteDataAccess.LoadElection(selectedVoter.EligibleForElectionId, thisErrorModel, _loggedInUser.Id).ElectionName.ToString();
             }
         }
 

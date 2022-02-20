@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Voting_Library;
 using VotingLibrary;
 
 namespace Voting_App
@@ -19,7 +20,9 @@ namespace Voting_App
         Voter loggedInVoter;
         User _loggedInUser;
 
-        public frmCastVote(User loggedInUser)
+        ISqliteDataAccess thisDAL;
+
+        public frmCastVote(User loggedInUser, )
         {
             InitializeComponent();
 
@@ -34,9 +37,10 @@ namespace Voting_App
 
         private void GetElection()
         {
-            loggedInVoter.Error = HelperClass.PopulateErrorModel("frmCastVote","GetElection");
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmCastVote","GetElection");
 
-            eligibleElection = SqliteDataAccess.LoadElection(loggedInVoter.EligibleForElectionId, loggedInVoter.Error);
+            eligibleElection = SqliteDataAccess.LoadElection(loggedInVoter.EligibleForElectionId, thisModel, loggedInVoter.Id);
 
             if (eligibleElection != null)
                 txtEligibleElection.Text = eligibleElection.ElectionName;
@@ -51,7 +55,11 @@ namespace Voting_App
             }
             else if(Convert.ToDateTime(eligibleElection.EndDate).AddDays(1) < DateTime.Now)
             {
-                lblVotingCloses.Text = "Voting has now closed for this election";
+                lblVotingCloses.Text = "Voting has now closed for this election.";
+            }
+            else if (DateTime.Now < Convert.ToDateTime(eligibleElection.StartDate))
+            {
+                lblVotingCloses.Text = "Voting starts on " + eligibleElection.StartDate;
             }
             else
             {
@@ -62,7 +70,6 @@ namespace Voting_App
             }
 
         }
-
 
         private void LoadCandidatesList()
         {

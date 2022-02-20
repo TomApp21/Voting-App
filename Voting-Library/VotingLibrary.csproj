@@ -51,11 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
     <Compile Include="Candidate.cs" />
     <Compile Include="Election.cs" />
     <Compile Include="HelperClass.cs" />
     <Compile Include="ErrorModel.cs" />
+    <Compile Include="ISqliteDataAccess.cs" />
     <Compile Include="PersonModel.cs" />
     <Compile Include="SqliteDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -27,18 +27,15 @@ namespace Voting_App
 
             LoadElectionList();
 
-            //var serializedParent = JsonConvert.SerializeObject(loggedInUser);
-            //voter = JsonConvert.DeserializeObject<Voter>(serializedParent);
             ErrorModel errorModel = new ErrorModel();
             errorModel = HelperClass.PopulateErrorModel("frmMiniRegister", "Constructor");
 
             voter = SqliteDataAccess.GetVoterDetails(errorModel, _loggedInUser.Id, _loggedInUser.Id);
 
 
-
             //Comment out if want to access registration page after registering
             // -----------------------------------------------------------------
-            if (voter.NINumber != null)
+            if (voter.HasRegistered())
             {
                 pnlRegDetails.Visible = false;
                 lblMiniTitle.Visible = false;

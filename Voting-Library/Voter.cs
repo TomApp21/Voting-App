@@ -35,5 +35,15 @@ namespace VotingLibrary
                 return $"{ AddressLine1 }, { AddressLine2 }, { Postcode }";
             }            
         }
+
+        public bool HasRegistered()
+        {
+            bool blnReturn = false;
+
+            if (NINumber != null)
+                blnReturn = true;
+
+            return blnReturn;
+        }
     }
 }

@@ -9,13 +9,8 @@ namespace VotingLibrary
     public class Election
     {
         public int ElectionId { get; set; }
-        public string ElectionName { get; set; }    
+        public string ElectionName { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        IEnumerable<Candidate> Candidates { get; set; }
-
-        //public VotingMechanism VotingMechanism { get; set; }
-
-
     }
 }

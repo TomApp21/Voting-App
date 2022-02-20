@@ -57,8 +57,14 @@ namespace Voting_App
             election.StartDate = txtStartDate.Text;
             election.EndDate = txtEndDate.Text;
 
-            SaveElection(election);
-         
+            if (Convert.ToDateTime(election.EndDate) < Convert.ToDateTime(election.StartDate))
+            {
+                MessageBox.Show("End Date cannot be less than the Start Date.");
+            }
+            else
+                SaveElection(election);
+
+
             txtElectionName.Text = "";
             txtStartDate.Text = "";
             txtEndDate.Text = "";

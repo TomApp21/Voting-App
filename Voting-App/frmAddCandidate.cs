@@ -93,7 +93,10 @@ namespace Voting_App
 
         private async Task SaveCandidate(Candidate candidate)
         {
-            await SqliteDataAccess.SaveCandidate(candidate);
+            ErrorModel thisModel = new ErrorModel();
+            thisModel = HelperClass.PopulateErrorModel("frmAddCandidate", "SaveCandidate");
+
+            await SqliteDataAccess.SaveCandidate(thisModel, candidate, _loggedInUser.Id);
         }
 
 

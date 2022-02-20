@@ -7,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Voting_Library;
 using VotingLibrary;
 
 namespace Voting_App
 {
     public partial class frmRegistration : Form
     {
-        public frmRegistration()
+        private readonly ISqliteDataAccess _thisDAL;
+
+        public frmRegistration(ISqliteDataAccess thisDAL)
         {
             InitializeComponent();
+            _thisDAL = thisDAL;
         }
 
         private void frmRegistration_Load(object sender, EventArgs e)

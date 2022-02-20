@@ -69,6 +69,11 @@ namespace Voting_App
             selectedElection = (Election)dropdownElectionList.SelectedItem;
             int id = selectedElection.ElectionId;
             LoadChartCandidates(selectedElection.ElectionId);
+
+            if (Convert.ToDateTime(selectedElection.EndDate).AddDays(1) < DateTime.Now)
+                lblFinished.Text = "This election has finished.";
+            else
+                lblFinished.Text = "";
         }
     }
 }

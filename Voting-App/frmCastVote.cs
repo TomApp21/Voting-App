@@ -21,7 +21,10 @@ namespace Voting_App
         public frmCastVote(User _loggedInUser)
         {
             InitializeComponent();
-            loggedInVoter = SqliteDataAccess.GetVoterDetails(_loggedInUser.Id);
+
+            ErrorModel errorModel = new ErrorModel();
+            errorModel = HelperClass.PopulateErrorModel("frmCastVote", "Constructor");
+            loggedInVoter = SqliteDataAccess.GetVoterDetails(errorModel, _loggedInUser.Id, _loggedInUser.Id);
 
             GetElection();
         }

@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlNav = new System.Windows.Forms.Panel();
+            this.btnViewElectionScores = new System.Windows.Forms.Button();
             this.btnCastVote = new System.Windows.Forms.Button();
             this.btnAddCandidates = new System.Windows.Forms.Button();
-            this.pnlNav = new System.Windows.Forms.Panel();
             this.btnAddElection = new System.Windows.Forms.Button();
             this.btnConfirmIdentity = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -45,8 +46,6 @@
             this.pnlFormLoader = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnViewElectionScores = new System.Windows.Forms.Button();
-            this.btnViewElectionVoters = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,7 +56,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
             this.panel1.Controls.Add(this.pnlNav);
-            this.panel1.Controls.Add(this.btnViewElectionVoters);
             this.panel1.Controls.Add(this.btnViewElectionScores);
             this.panel1.Controls.Add(this.btnCastVote);
             this.panel1.Controls.Add(this.btnAddCandidates);
@@ -68,9 +66,38 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(186, 577);
+            this.panel1.Size = new System.Drawing.Size(279, 888);
             this.panel1.TabIndex = 1;
+            // 
+            // pnlNav
+            // 
+            this.pnlNav.BackColor = System.Drawing.Color.GhostWhite;
+            this.pnlNav.Location = new System.Drawing.Point(0, 297);
+            this.pnlNav.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(8, 154);
+            this.pnlNav.TabIndex = 2;
+            // 
+            // btnViewElectionScores
+            // 
+            this.btnViewElectionScores.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnViewElectionScores.FlatAppearance.BorderSize = 0;
+            this.btnViewElectionScores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewElectionScores.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewElectionScores.ForeColor = System.Drawing.Color.White;
+            this.btnViewElectionScores.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewElectionScores.Location = new System.Drawing.Point(0, 612);
+            this.btnViewElectionScores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnViewElectionScores.Name = "btnViewElectionScores";
+            this.btnViewElectionScores.Size = new System.Drawing.Size(279, 65);
+            this.btnViewElectionScores.TabIndex = 10;
+            this.btnViewElectionScores.Text = "View Election Scores";
+            this.btnViewElectionScores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnViewElectionScores.UseVisualStyleBackColor = true;
+            this.btnViewElectionScores.Click += new System.EventHandler(this.btnViewElectionScores_Click);
+            this.btnViewElectionScores.Leave += new System.EventHandler(this.btnViewElectionScores_Leave);
             // 
             // btnCastVote
             // 
@@ -80,9 +107,10 @@
             this.btnCastVote.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCastVote.ForeColor = System.Drawing.Color.White;
             this.btnCastVote.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCastVote.Location = new System.Drawing.Point(0, 354);
+            this.btnCastVote.Location = new System.Drawing.Point(0, 547);
+            this.btnCastVote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCastVote.Name = "btnCastVote";
-            this.btnCastVote.Size = new System.Drawing.Size(186, 42);
+            this.btnCastVote.Size = new System.Drawing.Size(279, 65);
             this.btnCastVote.TabIndex = 9;
             this.btnCastVote.Text = "Cast Vote";
             this.btnCastVote.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -98,23 +126,16 @@
             this.btnAddCandidates.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCandidates.ForeColor = System.Drawing.Color.White;
             this.btnAddCandidates.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddCandidates.Location = new System.Drawing.Point(0, 312);
+            this.btnAddCandidates.Location = new System.Drawing.Point(0, 482);
+            this.btnAddCandidates.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddCandidates.Name = "btnAddCandidates";
-            this.btnAddCandidates.Size = new System.Drawing.Size(186, 42);
+            this.btnAddCandidates.Size = new System.Drawing.Size(279, 65);
             this.btnAddCandidates.TabIndex = 8;
             this.btnAddCandidates.Text = "Add Candidate";
             this.btnAddCandidates.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAddCandidates.UseVisualStyleBackColor = true;
             this.btnAddCandidates.Click += new System.EventHandler(this.btnAddCandidates_Click_1);
             this.btnAddCandidates.Leave += new System.EventHandler(this.btnAddCandidates_Leave);
-            // 
-            // pnlNav
-            // 
-            this.pnlNav.BackColor = System.Drawing.Color.GhostWhite;
-            this.pnlNav.Location = new System.Drawing.Point(0, 193);
-            this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(5, 100);
-            this.pnlNav.TabIndex = 2;
             // 
             // btnAddElection
             // 
@@ -124,9 +145,10 @@
             this.btnAddElection.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddElection.ForeColor = System.Drawing.Color.White;
             this.btnAddElection.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddElection.Location = new System.Drawing.Point(0, 270);
+            this.btnAddElection.Location = new System.Drawing.Point(0, 417);
+            this.btnAddElection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddElection.Name = "btnAddElection";
-            this.btnAddElection.Size = new System.Drawing.Size(186, 42);
+            this.btnAddElection.Size = new System.Drawing.Size(279, 65);
             this.btnAddElection.TabIndex = 6;
             this.btnAddElection.Text = "Add Election";
             this.btnAddElection.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -142,9 +164,10 @@
             this.btnConfirmIdentity.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmIdentity.ForeColor = System.Drawing.Color.White;
             this.btnConfirmIdentity.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConfirmIdentity.Location = new System.Drawing.Point(0, 228);
+            this.btnConfirmIdentity.Location = new System.Drawing.Point(0, 352);
+            this.btnConfirmIdentity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConfirmIdentity.Name = "btnConfirmIdentity";
-            this.btnConfirmIdentity.Size = new System.Drawing.Size(186, 42);
+            this.btnConfirmIdentity.Size = new System.Drawing.Size(279, 65);
             this.btnConfirmIdentity.TabIndex = 5;
             this.btnConfirmIdentity.Text = "Confirm Identities";
             this.btnConfirmIdentity.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -160,9 +183,10 @@
             this.btnRegister.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.Color.White;
             this.btnRegister.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRegister.Location = new System.Drawing.Point(0, 186);
+            this.btnRegister.Location = new System.Drawing.Point(0, 287);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(186, 42);
+            this.btnRegister.Size = new System.Drawing.Size(279, 65);
             this.btnRegister.TabIndex = 4;
             this.btnRegister.Text = "Register";
             this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -178,9 +202,10 @@
             this.btnDashboard.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.Color.White;
             this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 144);
+            this.btnDashboard.Location = new System.Drawing.Point(0, 222);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(186, 42);
+            this.btnDashboard.Size = new System.Drawing.Size(279, 65);
             this.btnDashboard.TabIndex = 3;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -196,8 +221,9 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(186, 144);
+            this.panel2.Size = new System.Drawing.Size(279, 222);
             this.panel2.TabIndex = 2;
             // 
             // lblLogOff
@@ -207,9 +233,10 @@
             this.lblLogOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLogOff.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogOff.ForeColor = System.Drawing.Color.Black;
-            this.lblLogOff.Location = new System.Drawing.Point(65, 131);
+            this.lblLogOff.Location = new System.Drawing.Point(98, 202);
+            this.lblLogOff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLogOff.Name = "lblLogOff";
-            this.lblLogOff.Size = new System.Drawing.Size(46, 11);
+            this.lblLogOff.Size = new System.Drawing.Size(68, 17);
             this.lblLogOff.TabIndex = 3;
             this.lblLogOff.Text = "Log Off";
             this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
@@ -219,9 +246,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(30, 112);
+            this.label2.Location = new System.Drawing.Point(45, 172);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 11);
+            this.label2.Size = new System.Drawing.Size(184, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Some User Text Here";
             // 
@@ -230,18 +258,20 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.Color.White;
-            this.lblUsername.Location = new System.Drawing.Point(55, 90);
+            this.lblUsername.Location = new System.Drawing.Point(82, 138);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(77, 13);
+            this.lblUsername.Size = new System.Drawing.Size(111, 20);
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "User Name";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Voting_App.Properties.Resources.pngwing_com;
-            this.pictureBox1.Location = new System.Drawing.Point(60, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(90, 34);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
+            this.pictureBox1.Size = new System.Drawing.Size(94, 97);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -253,18 +283,20 @@
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.lblTitle);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(186, 0);
+            this.panel3.Location = new System.Drawing.Point(279, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(765, 577);
+            this.panel3.Size = new System.Drawing.Size(1147, 888);
             this.panel3.TabIndex = 4;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
             // pnlFormLoader
             // 
             this.pnlFormLoader.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFormLoader.Location = new System.Drawing.Point(0, 100);
+            this.pnlFormLoader.Location = new System.Drawing.Point(0, 154);
+            this.pnlFormLoader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlFormLoader.Name = "pnlFormLoader";
-            this.pnlFormLoader.Size = new System.Drawing.Size(765, 477);
+            this.pnlFormLoader.Size = new System.Drawing.Size(1147, 734);
             this.pnlFormLoader.TabIndex = 6;
             // 
             // button1
@@ -273,9 +305,10 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.button1.Location = new System.Drawing.Point(728, 12);
+            this.button1.Location = new System.Drawing.Point(1092, 18);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.Size = new System.Drawing.Size(38, 38);
             this.button1.TabIndex = 5;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
@@ -286,57 +319,23 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("MS UI Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.lblTitle.Location = new System.Drawing.Point(20, 17);
+            this.lblTitle.Location = new System.Drawing.Point(30, 26);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(141, 29);
+            this.lblTitle.Size = new System.Drawing.Size(214, 44);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Dashboard";
             // 
-            // btnViewElectionScores
-            // 
-            this.btnViewElectionScores.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnViewElectionScores.FlatAppearance.BorderSize = 0;
-            this.btnViewElectionScores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewElectionScores.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewElectionScores.ForeColor = System.Drawing.Color.White;
-            this.btnViewElectionScores.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewElectionScores.Location = new System.Drawing.Point(0, 396);
-            this.btnViewElectionScores.Name = "btnViewElectionScores";
-            this.btnViewElectionScores.Size = new System.Drawing.Size(186, 42);
-            this.btnViewElectionScores.TabIndex = 10;
-            this.btnViewElectionScores.Text = "View Election Scores";
-            this.btnViewElectionScores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnViewElectionScores.UseVisualStyleBackColor = true;
-            this.btnViewElectionScores.Click += new System.EventHandler(this.btnViewElectionScores_Click);
-            this.btnViewElectionScores.Leave += new System.EventHandler(this.btnViewElectionScores_Leave);
-            // 
-            // btnViewElectionVoters
-            // 
-            this.btnViewElectionVoters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnViewElectionVoters.FlatAppearance.BorderSize = 0;
-            this.btnViewElectionVoters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewElectionVoters.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewElectionVoters.ForeColor = System.Drawing.Color.White;
-            this.btnViewElectionVoters.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewElectionVoters.Location = new System.Drawing.Point(0, 438);
-            this.btnViewElectionVoters.Name = "btnViewElectionVoters";
-            this.btnViewElectionVoters.Size = new System.Drawing.Size(186, 42);
-            this.btnViewElectionVoters.TabIndex = 11;
-            this.btnViewElectionVoters.Text = "View Election Voters";
-            this.btnViewElectionVoters.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnViewElectionVoters.UseVisualStyleBackColor = true;
-            this.btnViewElectionVoters.Click += new System.EventHandler(this.btnViewElectionVoters_Click);
-            this.btnViewElectionVoters.Leave += new System.EventHandler(this.btnViewElectionVoters_Leave);
-            // 
             // Dashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(951, 577);
+            this.ClientSize = new System.Drawing.Size(1426, 888);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
@@ -370,7 +369,6 @@
         private System.Windows.Forms.Button btnAddCandidates;
         private System.Windows.Forms.Label lblLogOff;
         private System.Windows.Forms.Button btnCastVote;
-        private System.Windows.Forms.Button btnViewElectionVoters;
         private System.Windows.Forms.Button btnViewElectionScores;
     }
 }

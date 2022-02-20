@@ -24,9 +24,10 @@ namespace Voting_App
         public frmAddCandidate(User loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
+
             LoadElectionList();
 
-            _loggedInUser = loggedInUser;
 
             selectedElection = (Election)dropdownElectionList.SelectedItem;
             LoadCandidatesList(selectedElection.ElectionId);

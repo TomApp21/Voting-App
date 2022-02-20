@@ -193,21 +193,6 @@ namespace Voting_App
             FrmViewScores_Vrb.Show();
         }
 
-        private void btnViewElectionVoters_Click(object sender, EventArgs e)
-        {
-            pnlNav.Height = btnViewElectionVoters.Height;
-            pnlNav.Top = btnViewElectionVoters.Top;
-            btnViewElectionVoters.BackColor = Color.FromArgb(46, 51, 73); // change
-
-            lblTitle.Text = "View Voters";
-            this.pnlFormLoader.Controls.Clear();
-            ViewElVoters FrmViewVoters_Vrb = new ViewElVoters(loggedInUser) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            FrmViewVoters_Vrb.FormBorderStyle = FormBorderStyle.None;
-            this.pnlFormLoader.Controls.Add(FrmViewVoters_Vrb);
-            FrmViewVoters_Vrb.Show();
-        }
-
-
 
         private void btnDashboard_Leave(object sender, EventArgs e)
         {
@@ -241,14 +226,6 @@ namespace Voting_App
         {
             btnViewElectionScores.BackColor = Color.FromArgb(116, 86, 174);
         }
-
-        private void btnViewElectionVoters_Leave(object sender, EventArgs e)
-        {
-            btnViewElectionVoters.BackColor = Color.FromArgb(116, 86, 174);
-        }
-
-
-
 
         private void button1_Click(object sender, EventArgs e)
         {

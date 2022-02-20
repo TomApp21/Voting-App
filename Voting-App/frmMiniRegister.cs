@@ -29,9 +29,10 @@ namespace Voting_App
 
             //var serializedParent = JsonConvert.SerializeObject(loggedInUser);
             //voter = JsonConvert.DeserializeObject<Voter>(serializedParent);
+            ErrorModel errorModel = new ErrorModel();
+            errorModel = HelperClass.PopulateErrorModel("frmMiniRegister", "Constructor");
 
-
-            voter = SqliteDataAccess.GetVoterDetails(loggedInUser.Id); 
+            voter = SqliteDataAccess.GetVoterDetails(errorModel, _loggedInUser.Id, _loggedInUser.Id);
 
 
 

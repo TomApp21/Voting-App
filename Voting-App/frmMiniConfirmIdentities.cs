@@ -57,7 +57,9 @@ namespace Voting_App
 
         private void WireUpVotersDetailBoxes(int selectedVoterId)
         {
-            selectedVoter = SqliteDataAccess.GetVoterDetails(selectedVoterId);
+            ErrorModel errorModel = new ErrorModel();
+            errorModel = HelperClass.PopulateErrorModel("frmViewElScores", "WireUpVotersDetailBoxes");
+            selectedVoter = SqliteDataAccess.GetVoterDetails(errorModel, selectedVoterId, _loggedInUser.Id);
 
             if (selectedVoter != null)
             {

@@ -7,17 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Voting_Library;
 using VotingLibrary;
 
 namespace Voting_App
 {
     public partial class frmLogin : Form
     {
-        private readonly ISqliteDataAccess _thisDAL;
         public frmLogin()
         {
-            _thisDAL = (ISqliteDataAccess)Program.ServiceProvider.GetService(typeof(ISqliteDataAccess));
             InitializeComponent();
         }
 
@@ -29,7 +26,7 @@ namespace Voting_App
             loginUser.Password = txtBoxPassword.Text;
             loginUser.Error = HelperClass.PopulateErrorModel("frmLogin", "btnLogIn_Click");
 
-            User loggedInUser = _thisDAL.Login(loginUser);
+            User loggedInUser = SqliteDataAccess.Login(loginUser);
 
             if (loggedInUser != null)  // needs changing
             {
@@ -68,7 +65,7 @@ namespace Voting_App
 
         private void lblCreateAccount_Click(object sender, EventArgs e)
         {
-            new frmRegistration(_thisDAL).Show();
+            new frmRegistration().Show();
             this.Hide();
         }
     }

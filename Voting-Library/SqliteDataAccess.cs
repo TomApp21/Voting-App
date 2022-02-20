@@ -7,17 +7,13 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Voting_Library;
 using VotingLibrary;
 
 namespace VotingLibrary
 {
-    public class SqliteDataAccess : ISqliteDataAccess
+    public class SqliteDataAccess 
     {
-        public SqliteDataAccess()
-        {
-            
-        }
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
@@ -32,7 +28,7 @@ namespace VotingLibrary
         /// <param name="id"></param>
         /// <param name="thisModel"></param>
         /// <returns></returns>
-        public Election LoadElection(int id, ErrorModel thisModel, int userId)
+        public static Election LoadElection(int id, ErrorModel thisModel, int userId)
         {
             Election election = new Election();
 
@@ -56,7 +52,7 @@ namespace VotingLibrary
             }
         }
 
-        public List<Election> LoadElections(ErrorModel thisModel, int loggedInUserId)
+        public static List<Election> LoadElections(ErrorModel thisModel, int loggedInUserId)
         {
             List<Election> elections = new List<Election>();
 
@@ -80,7 +76,7 @@ namespace VotingLibrary
             }
         }
 
-        public async Task SaveElection(Election election, ErrorModel thisModel, int loggedInUserId)
+        public static async Task SaveElection(Election election, ErrorModel thisModel, int loggedInUserId)
         {
             try
             {
@@ -104,7 +100,7 @@ namespace VotingLibrary
 
         #region Register & Login
 
-        public string Register(User user)
+        public static string Register(User user)
         {
             string rtnMsg;
             try
@@ -125,7 +121,7 @@ namespace VotingLibrary
                 return rtnMsg = ex.Message;
             }
         }
-        public User Login(User user)
+        public static User Login(User user)
         {
             User loggedInUser = new User();
 
@@ -159,7 +155,7 @@ namespace VotingLibrary
         /// <param name="id">Id of voter to retrieve</param>
         /// <param name="loggedInUserId">Logged in user id</param>
         /// <returns></returns>
-        public Voter GetVoterDetails(ErrorModel thisModel, int id, int loggedInUserId)
+        public static Voter GetVoterDetails(ErrorModel thisModel, int id, int loggedInUserId)
         {
             Voter output = null;
             try
@@ -185,7 +181,7 @@ namespace VotingLibrary
         /// Loads voters who are awaiting identity confirmatiom.
         /// </summary>
         /// <returns></returns>
-        public List<Voter> LoadVotersList(ErrorModel thisModel, int loggedInUserId)
+        public static List<Voter> LoadVotersList(ErrorModel thisModel, int loggedInUserId)
         {
             List<Voter> voters = new List<Voter>();
             try
@@ -207,7 +203,7 @@ namespace VotingLibrary
             }
         }
 
-        public void ApproveVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
+        public static void ApproveVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
         {
             try
             {
@@ -226,7 +222,7 @@ namespace VotingLibrary
             }
         }
 
-        public void DenyVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
+        public static void DenyVoterIdentity(ErrorModel thisModel, int voterId, int loggedInUserId)
         {
             try
             {
@@ -251,7 +247,7 @@ namespace VotingLibrary
         #region Register Voter
 
 
-        public void RegisterVoter(ErrorModel thisModel, Voter voter, int loggedInUserId)
+        public static void RegisterVoter(ErrorModel thisModel, Voter voter, int loggedInUserId)
         {
             try
             {
@@ -275,7 +271,7 @@ namespace VotingLibrary
         #endregion
 
         #region Cast Vote
-        public bool CastVote(ErrorModel thisModel, int voterId, int candidateId)
+        public static bool CastVote(ErrorModel thisModel, int voterId, int candidateId)
         {
             Boolean blnReturn = false;
 
@@ -311,7 +307,7 @@ namespace VotingLibrary
 
         #region Candidates
 
-        public List<Candidate> LoadCandidates(ErrorModel thisModel, int electionId, int loggedInUserId)
+        public static List<Candidate> LoadCandidates(ErrorModel thisModel, int electionId, int loggedInUserId)
         {
             List<Candidate> candidates = new List<Candidate>();
             try
@@ -333,7 +329,7 @@ namespace VotingLibrary
             }
         }
 
-        public async Task SaveCandidate(ErrorModel thisModel, Candidate candidate, int userId)
+        public static async Task SaveCandidate(ErrorModel thisModel, Candidate candidate, int userId)
         {
             try
             {
@@ -357,7 +353,7 @@ namespace VotingLibrary
 
         #region Error Logging 
 
-        public string LogError(ErrorModel error)
+        public static string LogError(ErrorModel error)
         {
             string rtnMsg;
             try
@@ -379,7 +375,7 @@ namespace VotingLibrary
 
         // Demo Functions
         // --------------
-        public List<PersonModel> LoadPeople()
+        public static List<PersonModel> LoadPeople()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -388,7 +384,7 @@ namespace VotingLibrary
             }
         }
 
-        public void SavePerson(PersonModel person)
+        public static void SavePerson(PersonModel person)
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {

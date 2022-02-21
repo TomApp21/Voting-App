@@ -13,11 +13,13 @@ namespace Voting_App
 {
     public partial class frmViewElScores : Form
     {
-        List<Election> elections = new List<Election>();
-        List<Candidate> candidates = new List<Candidate>();
-
+        #region Declarations
         Election selectedElection = new Election();
         User _loggedInUser = new User();
+
+        List<Election> elections = new List<Election>();
+        List<Candidate> candidates = new List<Candidate>();
+        #endregion
 
         public frmViewElScores(User loggedInUser)
         {
@@ -29,7 +31,9 @@ namespace Voting_App
             LoadChartCandidates(selectedElection.ElectionId);
         }
 
-
+        /// <summary>
+        /// Loads election list
+        /// </summary>
         private void LoadElectionList()
         {
             ErrorModel thisModel = new ErrorModel();
@@ -38,6 +42,9 @@ namespace Voting_App
             WireUpElectionList();
         }
 
+        /// <summary>
+        /// Configures election dropdown
+        /// </summary>
         private void WireUpElectionList()
         {
             dropdownElectionList.DataSource = null;
@@ -46,16 +53,23 @@ namespace Voting_App
             dropdownElectionList.ValueMember = "ElectionId";
         }
 
+        /// <summary>
+        /// Retrieves all candidates associatede with an election
+        /// </summary>
+        /// <param name="electionId">id of selcetd election</param>
         private void LoadChartCandidates(int electionId)
         {
             ErrorModel thisModel = new ErrorModel();
             thisModel = HelperClass.PopulateErrorModel("frmViewElScores", "LoadChartCandidates");
 
-
             candidates = SqliteDataAccess.LoadCandidates(thisModel, electionId, _loggedInUser.Id);
             
             WireUpElectionScoreChart();
         }
+
+        /// <summary>
+        /// Configues the voter graph
+        /// </summary>
         private void WireUpElectionScoreChart()
         {
             chartElectionScore.DataSource = candidates;

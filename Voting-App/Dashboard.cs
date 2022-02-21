@@ -16,21 +16,14 @@ namespace Voting_App
     {
         private User loggedInUser;
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(
-
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse
-        );
-
+        // Parameters which allow panel to be moved
+        // ----------------------------------------
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
@@ -38,10 +31,12 @@ namespace Voting_App
         public Dashboard(User loggedInUser)
         {
             InitializeComponent();
-            this.loggedInUser = loggedInUser;
 
+            this.loggedInUser = loggedInUser;
             lblUsername.Text = "Hello " + loggedInUser.Username;
 
+            // Hide/Show navigation components depending on user privelege
+            // ------------------------------------------------------------
             if (loggedInUser.IsAdmin)
             {
                 btnRegister.Visible = false;
@@ -64,34 +59,32 @@ namespace Voting_App
                 btnViewElectionScores.Visible = false;
             }
 
-
-
-
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
+            // Highlight which nav button is active
+            // ------------------------------------
             pnlNav.Height = btnDashboard.Height;
             pnlNav.Top = btnDashboard.Top;
             pnlNav.Left = btnDashboard.Left;
 
             lblTitle.Text = "Dashboard";
+
+            // Clear current form, show dashboard form
+            // ---------------------------------------
             this.pnlFormLoader.Controls.Clear();
             frmMiniDashboard FrmDashboard_Vrb = new frmMiniDashboard(loggedInUser) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlFormLoader.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
-
         }
 
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Loads dashboard form
+        /// </summary>
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnDashboard.Height;
             pnlNav.Top = btnDashboard.Top;
             pnlNav.Left = btnDashboard.Left;
-            btnDashboard.BackColor = Color.FromArgb(46, 51, 73); // change
+            btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
 
             lblTitle.Text = "Dashboard";
             this.pnlFormLoader.Controls.Clear();
@@ -101,12 +94,15 @@ namespace Voting_App
             FrmDashboard_Vrb.Show();
         }
 
+
+        /// <summary>
+        /// Loads register to vote form
+        /// </summary>
         private void btnRegister_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnRegister.Height;
             pnlNav.Top = btnRegister.Top;
-            btnRegister.BackColor = Color.FromArgb(46, 51, 73); // change
-
+            btnRegister.BackColor = Color.FromArgb(46, 51, 73); 
 
             lblTitle.Text = "Register";
             this.pnlFormLoader.Controls.Clear();
@@ -114,10 +110,12 @@ namespace Voting_App
             FrmRegister_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlFormLoader.Controls.Add(FrmRegister_Vrb);
             FrmRegister_Vrb.Show();
-
-
         }
 
+
+        /// <summary>
+        /// Loads confirm identity form
+        /// </summary>
         private void btnConfirmIdentity_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnConfirmIdentity.Height;
@@ -130,9 +128,11 @@ namespace Voting_App
             FrmConfirmIdentities_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlFormLoader.Controls.Add(FrmConfirmIdentities_Vrb);
             FrmConfirmIdentities_Vrb.Show();
-
         }
 
+        /// <summary>
+        /// Loads add election form
+        /// </summary>
         private void btnAddElection_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnAddElection.Height;
@@ -147,6 +147,10 @@ namespace Voting_App
             FrmAddElection_Vrb.Show();
         }
 
+
+        /// <summary>
+        /// Loads add candidates form
+        /// </summary>
         private void btnAddCandidates_Click_1(object sender, EventArgs e)
         {
             pnlNav.Height = btnAddCandidates.Height;
@@ -161,6 +165,10 @@ namespace Voting_App
             FrmAddCandidate_Vrb.Show();
         }
 
+
+        /// <summary>
+        /// Loads cast vote form
+        /// </summary>
         private void btnCastVote_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnCastVote.Height;
@@ -175,6 +183,9 @@ namespace Voting_App
             FrmCastVote_Vrb.Show();
         }
 
+        /// <summary>
+        /// Loads view election scores form
+        /// </summary>
         private void btnViewElectionScores_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnViewElectionScores.Height;
@@ -189,7 +200,8 @@ namespace Voting_App
             FrmViewScores_Vrb.Show();
         }
 
-
+        // Sets navigation button back to original colour when a different tab is clicked.
+        // -------------------------------------------------------------------------------
         private void btnDashboard_Leave(object sender, EventArgs e)
         {
             btnDashboard.BackColor = Color.FromArgb(116, 86, 174);

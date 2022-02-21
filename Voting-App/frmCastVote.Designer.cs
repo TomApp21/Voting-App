@@ -45,7 +45,7 @@
             this.lblCastVote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
             this.lblCastVote.Location = new System.Drawing.Point(52, 49);
             this.lblCastVote.Name = "lblCastVote";
-            this.lblCastVote.Size = new System.Drawing.Size(241, 41);
+            this.lblCastVote.Size = new System.Drawing.Size(162, 27);
             this.lblCastVote.TabIndex = 48;
             this.lblCastVote.Text = "Cast A Vote";
             // 
@@ -55,7 +55,7 @@
             this.lblElectionName.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblElectionName.Location = new System.Drawing.Point(54, 87);
             this.lblElectionName.Name = "lblElectionName";
-            this.lblElectionName.Size = new System.Drawing.Size(88, 28);
+            this.lblElectionName.Size = new System.Drawing.Size(57, 17);
             this.lblElectionName.TabIndex = 53;
             this.lblElectionName.Text = "Election";
             // 
@@ -63,10 +63,10 @@
             // 
             this.listCandidateListBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listCandidateListBox.FormattingEnabled = true;
-            this.listCandidateListBox.ItemHeight = 28;
+            this.listCandidateListBox.ItemHeight = 17;
             this.listCandidateListBox.Location = new System.Drawing.Point(57, 170);
             this.listCandidateListBox.Name = "listCandidateListBox";
-            this.listCandidateListBox.Size = new System.Drawing.Size(332, 200);
+            this.listCandidateListBox.Size = new System.Drawing.Size(332, 191);
             this.listCandidateListBox.TabIndex = 56;
             this.listCandidateListBox.Visible = false;
             // 
@@ -76,7 +76,7 @@
             this.lblCandidates.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCandidates.Location = new System.Drawing.Point(54, 150);
             this.lblCandidates.Name = "lblCandidates";
-            this.lblCandidates.Size = new System.Drawing.Size(116, 28);
+            this.lblCandidates.Size = new System.Drawing.Size(76, 17);
             this.lblCandidates.TabIndex = 58;
             this.lblCandidates.Text = "Candidates";
             this.lblCandidates.Visible = false;
@@ -104,7 +104,7 @@
             this.lblVotingCloses.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVotingCloses.Location = new System.Drawing.Point(279, 111);
             this.lblVotingCloses.Name = "lblVotingCloses";
-            this.lblVotingCloses.Size = new System.Drawing.Size(0, 28);
+            this.lblVotingCloses.Size = new System.Drawing.Size(0, 17);
             this.lblVotingCloses.TabIndex = 60;
             // 
             // txtEligibleElection
@@ -113,7 +113,7 @@
             this.txtEligibleElection.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEligibleElection.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtEligibleElection.Enabled = false;
-            this.txtEligibleElection.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtEligibleElection.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
             this.txtEligibleElection.Location = new System.Drawing.Point(57, 110);
             this.txtEligibleElection.Multiline = true;
             this.txtEligibleElection.Name = "txtEligibleElection";
@@ -124,7 +124,7 @@
             // 
             // frmCastVote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(717, 438);

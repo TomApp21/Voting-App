@@ -64,7 +64,7 @@
             // 
             this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsername.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtUsername.Location = new System.Drawing.Point(38, 125);
             this.txtUsername.Multiline = true;
             this.txtUsername.Name = "txtUsername";
@@ -75,7 +75,7 @@
             // 
             this.txtBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxPassword.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxPassword.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtBoxPassword.Location = new System.Drawing.Point(38, 183);
             this.txtBoxPassword.Multiline = true;
             this.txtBoxPassword.Name = "txtBoxPassword";

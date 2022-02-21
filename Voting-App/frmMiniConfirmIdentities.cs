@@ -13,9 +13,12 @@ namespace Voting_App
 {
     public partial class frmMiniConfirmIdentities : Form
     {
+        #region Declarations
+
         Voter selectedVoter = new Voter();
         User _loggedInUser = new User();
         List<Voter> voters = new List<Voter>();
+        #endregion
 
 
         public frmMiniConfirmIdentities(User loggedInUser)
@@ -25,6 +28,9 @@ namespace Voting_App
             LoadUsersList();
         }
 
+        /// <summary>
+        /// Load users awaiting identity verification
+        /// </summary>
         private void LoadUsersList()
         {
             ErrorModel thisModel = new ErrorModel();
@@ -34,6 +40,9 @@ namespace Voting_App
             WireUpVotersList();
         }
 
+        /// <summary>
+        /// Configure voters list box
+        /// </summary>
         private void WireUpVotersList()
         {
             listElectionListBox.DataSource = null;
@@ -54,6 +63,10 @@ namespace Voting_App
             }
         }
 
+        /// <summary>
+        /// Sets up user/voter details in textbox
+        /// </summary>
+        /// <param name="selectedVoterId">id of the selected voter</param>
         private void WireUpVotersDetailBoxes(int selectedVoterId)
         {
             ErrorModel errorModel = new ErrorModel();
@@ -74,8 +87,6 @@ namespace Voting_App
                 txtElection.Text = SqliteDataAccess.LoadElection(selectedVoter.EligibleForElectionId, thisErrorModel, _loggedInUser.Id).ElectionName.ToString();
             }
         }
-
-
 
         private void listElectionListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -112,24 +123,33 @@ namespace Voting_App
 
         private async void btnDeny_Click(object sender, EventArgs e)
         {
-            ErrorModel errorModel = new ErrorModel();
-            errorModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "btnDeny_Click");
+            if (voters != null)
+            {
+                ErrorModel errorModel = new ErrorModel();
+                errorModel = HelperClass.PopulateErrorModel("frmMiniConfirmIdentities", "btnDeny_Click");
 
 
-            SqliteDataAccess.DenyVoterIdentity(errorModel, selectedVoter.Id, _loggedInUser.Id);
-            lblConfirmation.Text = selectedVoter.FullName + "'s identity has been denied.";
+                SqliteDataAccess.DenyVoterIdentity(errorModel, selectedVoter.Id, _loggedInUser.Id);
+                lblConfirmation.Text = selectedVoter.FullName + "'s identity has been denied.";
 
-            lblConfirmation.Visible = true;
-            btnApprove.Hide();
-            btnDeny.Hide();
+                lblConfirmation.Visible = true;
+                btnApprove.Hide();
+                btnDeny.Hide();
 
-            // show message + re-load list
-            // ---------------------------
-            await showProcessedMsg();
-            clearTextBoxes();
-            LoadUsersList();
+                // show message + re-load list
+                // ---------------------------
+                await showProcessedMsg();
+                clearTextBoxes();
+                LoadUsersList();
+            }
+            else
+                clearTextBoxes();
         }
 
+        /// <summary>
+        /// Shows confirmation label + hides buttons for 3 seconds
+        /// </summary>
+        /// <returns></returns>
         private async Task showProcessedMsg()
         {
             var t = new Timer();
@@ -144,6 +164,9 @@ namespace Voting_App
             t.Start();
         }
 
+        /// <summary>
+        /// Clears text boxes
+        /// </summary>
         private void clearTextBoxes()
         {
             txtAddLine1.Text = "";
@@ -152,33 +175,6 @@ namespace Voting_App
             txtElection.Text = "";
             txtFirstName.Text = "";
             txtNatIns.Text = "";
-        }
-
-
-        private void listElectionListBox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            //if (e.Index < 0) return;
-            ////if the item state is selected them change the back color 
-            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            //    e = new DrawItemEventArgs(e.Graphics,
-            //                              e.Font,
-            //                              e.Bounds,
-            //                              e.Index,
-            //                              e.State ^ DrawItemState.Selected,
-            //                              e.ForeColor,
-            //                              Color.MediumPurple);//Choose the color
-
-            //// Draw the background of the ListBox control for each item.
-            //e.DrawBackground();
-            //// Draw the current item text
-
-            //    e.Graphics.DrawString(listElectionListBox.Text, e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
-
-            //// If the ListBox has focus, draw a focus rectangle around the selected item.
-            //e.DrawFocusRectangle();
-
-            //listElectionListBox.DisplayMember = "FullName";
-
         }
     }
 }

@@ -72,7 +72,7 @@
             // 
             this.txtStartDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtStartDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStartDate.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStartDate.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
             this.txtStartDate.Location = new System.Drawing.Point(60, 197);
             this.txtStartDate.Multiline = true;
             this.txtStartDate.Name = "txtStartDate";
@@ -83,7 +83,7 @@
             // 
             this.txtElectionName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtElectionName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtElectionName.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtElectionName.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
             this.txtElectionName.Location = new System.Drawing.Point(60, 139);
             this.txtElectionName.Multiline = true;
             this.txtElectionName.Name = "txtElectionName";
@@ -135,7 +135,7 @@
             // 
             this.txtEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtEndDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEndDate.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEndDate.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
             this.txtEndDate.Location = new System.Drawing.Point(60, 255);
             this.txtEndDate.Multiline = true;
             this.txtEndDate.Name = "txtEndDate";

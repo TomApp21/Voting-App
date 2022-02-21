@@ -14,15 +14,17 @@ namespace Voting_App
 {
     public partial class frmCastVote : Form
     {
-        List<Candidate> candidates = new List<Candidate>();
-        Election eligibleElection = new Election();
-        Voter loggedInVoter;
-        User _loggedInUser;
+        #region Declarations
+
+        private Voter loggedInVoter;
+        private User _loggedInUser;
+        private Election eligibleElection = new Election();
+        private List<Candidate> candidates = new List<Candidate>();
+        #endregion
 
         public frmCastVote(User loggedInUser)
         {
             InitializeComponent();
-
             _loggedInUser = loggedInUser;
 
             ErrorModel errorModel = new ErrorModel();
@@ -32,6 +34,9 @@ namespace Voting_App
             GetElection();
         }
 
+        /// <summary>
+        /// Retrieves election that the logged in user is eligible for
+        /// </summary>
         private void GetElection()
         {
             ErrorModel thisModel = new ErrorModel();
@@ -39,9 +44,10 @@ namespace Voting_App
 
             eligibleElection = SqliteDataAccess.LoadElection(loggedInVoter.EligibleForElectionId, thisModel, loggedInVoter.Id);
 
-            if (eligibleElection != null)
+            if (eligibleElection != null) 
+            {
                 txtEligibleElection.Text = eligibleElection.ElectionName;
-
+            }
             if (!loggedInVoter.IdentityConfirmed)
             {
                 lblVotingCloses.Text = "Awaiting ID verification";
@@ -58,16 +64,18 @@ namespace Voting_App
             {
                 lblVotingCloses.Text = "Voting starts on " + eligibleElection.StartDate;
             }
-            else
+            else // load candidates list for the eligible election
             {
                 listCandidateListBox.Show();
                 btnCastVote.Show();
                 lblCandidates.Show();
                 LoadCandidatesList();
             }
-
         }
 
+        /// <summary>
+        /// Retrieves candidates associated with election
+        /// </summary>
         private void LoadCandidatesList()
         {
             ErrorModel thisModel = new ErrorModel();
@@ -77,6 +85,9 @@ namespace Voting_App
             WireUpCandidateList();
         }
 
+        /// <summary>
+        /// Configures candidate list
+        /// </summary>
         private void WireUpCandidateList()
         {
             listCandidateListBox.DataSource = null;
@@ -84,7 +95,6 @@ namespace Voting_App
             listCandidateListBox.DisplayMember = "CandidateName";
             listCandidateListBox.ValueMember = "CandidateId";
         }
-
 
         private void btnCastVote_Click(object sender, EventArgs e)
         {

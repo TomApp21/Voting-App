@@ -28,7 +28,7 @@ namespace Voting_App
 
             User loggedInUser = SqliteDataAccess.Login(loginUser);
 
-            if (loggedInUser != null)  // needs changing
+            if (loggedInUser != null)
             {
                 new Dashboard(loggedInUser).Show();
                 this.Hide();
@@ -54,12 +54,10 @@ namespace Voting_App
             if (checkbxShowPassword.Checked)
             {
                 txtBoxPassword.PasswordChar = '\0';
-
             }
             else
             {
                 txtBoxPassword.PasswordChar = '*';
-
             }
         }
 

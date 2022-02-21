@@ -19,11 +19,6 @@ namespace Voting_App
             InitializeComponent();
         }
 
-        private void frmRegistration_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
             if (txtUsername.Text == "" || txtboxPassword.Text == "" || txtBoxConPass.Text == "")
@@ -60,6 +55,9 @@ namespace Voting_App
             }
         }
 
+        /// <summary>
+        /// Hides/Shows the password chars
+        /// </summary>
         private void checkbxShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (checkbxShowPassword.Checked)
@@ -72,7 +70,6 @@ namespace Voting_App
             {
                 txtboxPassword.PasswordChar = '*';
                 txtBoxConPass.PasswordChar = '*';
-
             }
         }
 
@@ -89,5 +86,11 @@ namespace Voting_App
             new frmLogin().Show();
             this.Hide();
         }
+
+        private void frmRegistration_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

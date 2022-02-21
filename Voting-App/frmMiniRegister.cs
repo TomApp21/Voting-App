@@ -15,10 +15,12 @@ namespace Voting_App
 {
     public partial class frmMiniRegister : Form
     {
-        private Voter voter;
+        #region Declarations
 
-        List<Election> elections = new List<Election>();
-        User _loggedInUser = new User();
+        private Voter voter;
+        private List<Election> elections = new List<Election>();
+        private User _loggedInUser = new User();
+        #endregion
 
         public frmMiniRegister(User loggedInUser)
         {
@@ -32,9 +34,6 @@ namespace Voting_App
 
             voter = SqliteDataAccess.GetVoterDetails(errorModel, _loggedInUser.Id, _loggedInUser.Id);
 
-
-            //Comment out if want to access registration page after registering
-            // -----------------------------------------------------------------
             if (voter.HasRegistered())
             {
                 pnlRegDetails.Visible = false;
@@ -44,10 +43,7 @@ namespace Voting_App
             }
         }
 
-        private void frmMiniRegister_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
@@ -70,16 +66,20 @@ namespace Voting_App
                     voter.NINumber = txtNatIns.Text;
                     voter.EligibleForElectionId = (int)dropdownElectionList.SelectedValue;
 
-                    // add bool return for 
-
                     ErrorModel thisModel = new ErrorModel();
+                    thisModel = HelperClass.PopulateErrorModel("frmMiniRegister", "btnRegister_Click");
 
-                    SqliteDataAccess.RegisterVoter(thisModel, voter, _loggedInUser.Id);
+                    bool success = SqliteDataAccess.RegisterVoter(thisModel, voter, _loggedInUser.Id);
 
-                    btnRegister.Enabled = false;
-                    lblRegistrationComplete.Visible = true;
-                    
-                    DisableTextBoxEntry();
+                    if (success)
+                    {
+                        btnRegister.Enabled = false;
+                        lblRegistrationComplete.Visible = true;
+
+                        DisableTextBoxEntry();
+                    }
+                    else
+                        MessageBox.Show("Vote Registration Failed");
                 }
             }
             else
@@ -88,6 +88,9 @@ namespace Voting_App
             }
         }
 
+        /// <summary>
+        /// Load elections
+        /// </summary>
         private void LoadElectionList()
         {
             ErrorModel thisModel = new ErrorModel();
@@ -97,6 +100,9 @@ namespace Voting_App
             WireUpElectionList();
         }
 
+        /// <summary>
+        ///  Configure election drop-down
+        /// </summary>
         private void WireUpElectionList()
         {
             dropdownElectionList.DataSource = null;
@@ -121,6 +127,9 @@ namespace Voting_App
                 return false;
         }
 
+        /// <summary>
+        /// Disables text box entry after successful registration.
+        /// </summary>
         private void DisableTextBoxEntry()
         {
             txtFirstName.ReadOnly = true;
@@ -132,7 +141,10 @@ namespace Voting_App
             txtNatIns.ReadOnly = true;
             dropdownElectionList.Enabled = false;
         }
+        private void frmMiniRegister_Load(object sender, EventArgs e)
+        {
 
+        }
 
     }
 }

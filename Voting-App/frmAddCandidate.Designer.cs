@@ -44,10 +44,9 @@
             // 
             this.lblElectionName.AutoSize = true;
             this.lblElectionName.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblElectionName.Location = new System.Drawing.Point(81, 272);
-            this.lblElectionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblElectionName.Location = new System.Drawing.Point(54, 177);
             this.lblElectionName.Name = "lblElectionName";
-            this.lblElectionName.Size = new System.Drawing.Size(88, 28);
+            this.lblElectionName.Size = new System.Drawing.Size(57, 17);
             this.lblElectionName.TabIndex = 51;
             this.lblElectionName.Text = "Election";
             // 
@@ -55,22 +54,20 @@
             // 
             this.txtCandidateName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtCandidateName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCandidateName.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtCandidateName.Location = new System.Drawing.Point(86, 214);
-            this.txtCandidateName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCandidateName.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
+            this.txtCandidateName.Location = new System.Drawing.Point(57, 139);
             this.txtCandidateName.Multiline = true;
             this.txtCandidateName.Name = "txtCandidateName";
-            this.txtCandidateName.Size = new System.Drawing.Size(324, 43);
+            this.txtCandidateName.Size = new System.Drawing.Size(216, 28);
             this.txtCandidateName.TabIndex = 49;
             // 
             // lblCandidateName
             // 
             this.lblCandidateName.AutoSize = true;
             this.lblCandidateName.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCandidateName.Location = new System.Drawing.Point(81, 183);
-            this.lblCandidateName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCandidateName.Location = new System.Drawing.Point(54, 119);
             this.lblCandidateName.Name = "lblCandidateName";
-            this.lblCandidateName.Size = new System.Drawing.Size(169, 28);
+            this.lblCandidateName.Size = new System.Drawing.Size(110, 17);
             this.lblCandidateName.TabIndex = 48;
             this.lblCandidateName.Text = "Candidate Name";
             // 
@@ -80,10 +77,9 @@
             this.lblAddCandidate.BackColor = System.Drawing.Color.White;
             this.lblAddCandidate.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddCandidate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.lblAddCandidate.Location = new System.Drawing.Point(78, 103);
-            this.lblAddCandidate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAddCandidate.Location = new System.Drawing.Point(52, 67);
             this.lblAddCandidate.Name = "lblAddCandidate";
-            this.lblAddCandidate.Size = new System.Drawing.Size(501, 41);
+            this.lblAddCandidate.Size = new System.Drawing.Size(339, 27);
             this.lblAddCandidate.TabIndex = 47;
             this.lblAddCandidate.Text = "Add Candidate To Election";
             // 
@@ -95,10 +91,9 @@
             this.btnAddCandidate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCandidate.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCandidate.ForeColor = System.Drawing.Color.White;
-            this.btnAddCandidate.Location = new System.Drawing.Point(86, 417);
-            this.btnAddCandidate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddCandidate.Location = new System.Drawing.Point(57, 271);
             this.btnAddCandidate.Name = "btnAddCandidate";
-            this.btnAddCandidate.Size = new System.Drawing.Size(324, 54);
+            this.btnAddCandidate.Size = new System.Drawing.Size(216, 35);
             this.btnAddCandidate.TabIndex = 45;
             this.btnAddCandidate.Text = "Add Candidate";
             this.btnAddCandidate.UseVisualStyleBackColor = false;
@@ -111,11 +106,10 @@
             this.dropdownElectionList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dropdownElectionList.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropdownElectionList.FormattingEnabled = true;
-            this.dropdownElectionList.Location = new System.Drawing.Point(86, 303);
-            this.dropdownElectionList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dropdownElectionList.Location = new System.Drawing.Point(57, 197);
             this.dropdownElectionList.MaxDropDownItems = 16;
             this.dropdownElectionList.Name = "dropdownElectionList";
-            this.dropdownElectionList.Size = new System.Drawing.Size(322, 33);
+            this.dropdownElectionList.Size = new System.Drawing.Size(216, 23);
             this.dropdownElectionList.TabIndex = 52;
             this.dropdownElectionList.SelectedIndexChanged += new System.EventHandler(this.dropdownElectionList_SelectedIndexChanged);
             // 
@@ -124,10 +118,9 @@
             this.lblCanSuccessMsg.AutoSize = true;
             this.lblCanSuccessMsg.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCanSuccessMsg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
-            this.lblCanSuccessMsg.Location = new System.Drawing.Point(322, 598);
-            this.lblCanSuccessMsg.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCanSuccessMsg.Location = new System.Drawing.Point(215, 389);
             this.lblCanSuccessMsg.Name = "lblCanSuccessMsg";
-            this.lblCanSuccessMsg.Size = new System.Drawing.Size(128, 31);
+            this.lblCanSuccessMsg.Size = new System.Drawing.Size(83, 20);
             this.lblCanSuccessMsg.TabIndex = 53;
             this.lblCanSuccessMsg.Text = "Candidate ";
             this.lblCanSuccessMsg.Visible = false;
@@ -137,10 +130,9 @@
             this.lblCandidateList.AutoSize = true;
             this.lblCandidateList.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCandidateList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.lblCandidateList.Location = new System.Drawing.Point(558, 214);
-            this.lblCandidateList.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCandidateList.Location = new System.Drawing.Point(372, 139);
             this.lblCandidateList.Name = "lblCandidateList";
-            this.lblCandidateList.Size = new System.Drawing.Size(193, 36);
+            this.lblCandidateList.Size = new System.Drawing.Size(130, 24);
             this.lblCandidateList.TabIndex = 55;
             this.lblCandidateList.Text = "Candidates";
             // 
@@ -148,31 +140,29 @@
             // 
             this.listCandidateListBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listCandidateListBox.FormattingEnabled = true;
-            this.listCandidateListBox.ItemHeight = 28;
-            this.listCandidateListBox.Location = new System.Drawing.Point(564, 266);
-            this.listCandidateListBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listCandidateListBox.ItemHeight = 17;
+            this.listCandidateListBox.Location = new System.Drawing.Point(376, 173);
             this.listCandidateListBox.Name = "listCandidateListBox";
-            this.listCandidateListBox.Size = new System.Drawing.Size(496, 312);
+            this.listCandidateListBox.Size = new System.Drawing.Size(332, 191);
             this.listCandidateListBox.TabIndex = 54;
             // 
             // lblEligibleElection
             // 
             this.lblEligibleElection.AutoSize = true;
             this.lblEligibleElection.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEligibleElection.Location = new System.Drawing.Point(81, 495);
-            this.lblEligibleElection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEligibleElection.Location = new System.Drawing.Point(54, 322);
             this.lblEligibleElection.Name = "lblEligibleElection";
-            this.lblEligibleElection.Size = new System.Drawing.Size(207, 28);
+            this.lblEligibleElection.Size = new System.Drawing.Size(135, 17);
             this.lblEligibleElection.TabIndex = 56;
             this.lblEligibleElection.Text = "No Eligible Elections";
             this.lblEligibleElection.Visible = false;
             // 
             // frmAddCandidate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1100, 734);
+            this.ClientSize = new System.Drawing.Size(733, 477);
             this.Controls.Add(this.lblEligibleElection);
             this.Controls.Add(this.lblCandidateList);
             this.Controls.Add(this.listCandidateListBox);
@@ -184,7 +174,6 @@
             this.Controls.Add(this.lblAddCandidate);
             this.Controls.Add(this.btnAddCandidate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAddCandidate";
             this.Text = "frmAddCandidate";
             this.ResumeLayout(false);

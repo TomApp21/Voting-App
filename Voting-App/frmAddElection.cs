@@ -13,20 +13,25 @@ namespace Voting_App
 {
     public partial class frmAddElection : Form
     {
-        List<Election> elections = new List<Election>();
-        User _loggedInUser = new User();
+        #region Declarations
 
+        private User _loggedInUser = new User();
+        private List<Election> elections = new List<Election>();
+        #endregion
+
+        #region Constructor
         public frmAddElection(User loggedInUser)
         {
             InitializeComponent();
             _loggedInUser = loggedInUser;
-
             LoadElectionList();
-
-
         }
+        #endregion
 
 
+        /// <summary>
+        /// Gets list of elections
+        /// </summary>
         private void LoadElectionList()
         {
             ErrorModel thisModel = new ErrorModel();
@@ -37,16 +42,14 @@ namespace Voting_App
             WireUpElectionList();
         }
 
+        /// <summary>
+        /// Configures election list
+        /// </summary>
         private void WireUpElectionList()
         {
             listElectionListBox.DataSource = null;
             listElectionListBox.DataSource = elections;
             listElectionListBox.DisplayMember = "ElectionName";
-        }
-
-        private void btnRefreshList_Click(object sender, EventArgs e)
-        {
-            LoadElectionList();
         }
 
         private void btnAddElection_Click(object sender, EventArgs e)
@@ -57,22 +60,35 @@ namespace Voting_App
             election.StartDate = txtStartDate.Text;
             election.EndDate = txtEndDate.Text;
 
-            if (Convert.ToDateTime(election.EndDate) < Convert.ToDateTime(election.StartDate))
+
+            if (election.EndDate == "" || election.StartDate == "" || election.ElectionName == "")
             {
-                MessageBox.Show("End Date cannot be less than the Start Date.");
+                MessageBox.Show("Field cannot be empty");
             }
             else
-                SaveElection(election);
+            {
+                /// Validates that end date is not before start date and saves election to db if valid
+                /// ----------------------------------------------------------------------------------
+                if (Convert.ToDateTime(election.EndDate) < Convert.ToDateTime(election.StartDate))
+                    MessageBox.Show("End Date cannot be less than the Start Date.");
+                else
+                    SaveElection(election);
+            }
 
-
+            /// Clear election details on UI
+            /// ----------------------------
             txtElectionName.Text = "";
             txtStartDate.Text = "";
             txtEndDate.Text = "";
 
             LoadElectionList();
-
         }
 
+        /// <summary>
+        /// Saves election to db
+        /// </summary>
+        /// <param name="election">populated election model</param>
+        /// <returns></returns>
         private async Task SaveElection(Election election)
         {
             ErrorModel thisModel = new ErrorModel();

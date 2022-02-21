@@ -13,14 +13,15 @@ namespace Voting_App
 {
     public partial class frmAddCandidate : Form
     {
-        List<Election> elections = new List<Election>();
-        List<Candidate> candidates = new List<Candidate>();
-
-        Candidate selectedCandidate = new Candidate();
-        Election selectedElection = new Election();
+        #region Declarations
 
         User _loggedInUser = new User();
+        Election selectedElection = new Election();
+        List<Election> elections = new List<Election>();
+        List<Candidate> candidates = new List<Candidate>();
+        #endregion
 
+        #region Constructor
         public frmAddCandidate(User loggedInUser)
         {
             InitializeComponent();
@@ -28,31 +29,36 @@ namespace Voting_App
 
             LoadElectionList();
 
+            /// Get all candidates belonging to the defaulted election
+            /// Show add candidate button
             if (elections.Count != 0)
             {
                 selectedElection = (Election)dropdownElectionList.SelectedItem;
                 LoadCandidatesList(selectedElection.ElectionId);
                 btnAddCandidate.Show();
             }
+            /// Show message indicating no elections
             else
                 lblEligibleElection.Show();
-
-
         }
+        #endregion
 
+        /// <summary>
+        /// Retrieves elections that have not yet started
+        /// </summary>
         private void LoadElectionList()
         {
-            // Declare error model to be passed to DAL
-            // ---------------------------------------
+            /// Declare error model to be passed to DAL
+            /// --------------------------------------
             ErrorModel thisModel = new ErrorModel();
             thisModel = HelperClass.PopulateErrorModel("frmAddCandidate", "LoadElectionList");
 
-            // Retrieve Elections
-            // ------------------
+            /// Retrieve Elections
+            /// ------------------
             elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
 
-            // Remove elections that have ended
-            // --------------------------------
+            /// Remove elections that have started or ended from the list
+            /// ---------------------------------------------------------
             foreach (Election election in elections.ToList())
             {
                 if (Convert.ToDateTime(election.StartDate) < DateTime.Now)
@@ -62,20 +68,18 @@ namespace Voting_App
         }
 
         /// <summary>
-        /// 
+        /// Configures the election dropdown list
         /// </summary>
         private void WireUpElectionList()
         {
             dropdownElectionList.DataSource = null;
             dropdownElectionList.DataSource = elections;
-            dropdownElectionList.DisplayMember = "ElectionName"; // Column Name
+            dropdownElectionList.DisplayMember = "ElectionName"; 
             dropdownElectionList.ValueMember = "ElectionId";
         }
 
         private void btnAddCandidate_Click(object sender, EventArgs e)
         {
-            // if election started, can't add candidate
-
             if (txtCandidateName.Text != "" && dropdownElectionList.SelectedItem != null)
             {
                 Candidate candidate = new Candidate();
@@ -84,13 +88,24 @@ namespace Voting_App
                 candidate.ElectionId = (int)dropdownElectionList.SelectedValue;
 
                 SaveCandidate(candidate);
+
+                // Clear text
+                // ------------
                 txtCandidateName.Text = "";
 
+                // Re-load candidate list
+                // ----------------------
                 LoadCandidatesList(candidate.ElectionId);
             }
- 
+            else
+                MessageBox.Show("Field cannot be empty");
         }
 
+        /// <summary>
+        /// Saves candidate to election in db
+        /// </summary>
+        /// <param name="candidate">candidate entered by admin</param>
+        /// <returns></returns>
         private async Task SaveCandidate(Candidate candidate)
         {
             ErrorModel thisModel = new ErrorModel();
@@ -99,7 +114,12 @@ namespace Voting_App
             await SqliteDataAccess.SaveCandidate(thisModel, candidate, _loggedInUser.Id);
         }
 
-
+        /// <summary>
+        /// Handles drop down election list changing.
+        /// Refreshes candidate list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dropdownElectionList_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedElection = (Election)dropdownElectionList.SelectedItem;
@@ -107,6 +127,10 @@ namespace Voting_App
             LoadCandidatesList(id);
         }
 
+        /// <summary>
+        /// Retrieves candidates associated with an election
+        /// </summary>
+        /// <param name="electionId"></param>
         private void LoadCandidatesList(int electionId)
         {
             ErrorModel thisModel = new ErrorModel();
@@ -115,6 +139,9 @@ namespace Voting_App
             WireUpCandidateList();
         }
 
+        /// <summary>
+        /// Configures candidate list box
+        /// </summary>
         private void WireUpCandidateList()
         {
             listCandidateListBox.DataSource = null;

@@ -67,7 +67,6 @@
             this.listElectionListBox.Name = "listElectionListBox";
             this.listElectionListBox.Size = new System.Drawing.Size(199, 378);
             this.listElectionListBox.TabIndex = 46;
-            this.listElectionListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listElectionListBox_DrawItem);
             this.listElectionListBox.SelectedIndexChanged += new System.EventHandler(this.listElectionListBox_SelectedIndexChanged);
             // 
             // lblFirstName

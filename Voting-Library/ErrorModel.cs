@@ -8,7 +8,6 @@ namespace VotingLibrary
 {
     public class ErrorModel
     {
-        public int Id { get; set; }
         public string ClassName { get; set; }
         public string FunctionName { get; set; }
         public string TimeOfError { get; set; }

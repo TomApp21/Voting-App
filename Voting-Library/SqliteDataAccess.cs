@@ -322,7 +322,7 @@ namespace VotingLibrary
             {
                 using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    var query = conn.Query<Election>("select * from Elections WHERE ElectionId=@Electiond", new { ElectionId = id });
+                    var query = conn.Query<Election>("select * from Elections WHERE ElectionId=@ElectionId", new { ElectionId = id });
                     return query.FirstOrDefault();
                 }
             }
@@ -376,7 +376,7 @@ namespace VotingLibrary
             {
                 using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    conn.Execute("insert into Elections (ElectionName, StartDate, EndDate) values (@ElectionNam, @StartDate, @EndDate) ", election);
+                    conn.Execute("insert into Elections (ElectionName, StartDate, EndDate) values (@ElectionName, @StartDate, @EndDate) ", election);
                 }
             }
             catch (Exception ex)

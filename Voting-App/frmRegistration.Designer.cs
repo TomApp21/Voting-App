@@ -109,7 +109,7 @@
             // 
             this.txtBoxConPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtBoxConPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxConPass.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
+            this.txtBoxConPass.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtBoxConPass.Location = new System.Drawing.Point(38, 243);
             this.txtBoxConPass.Multiline = true;
             this.txtBoxConPass.Name = "txtBoxConPass";
@@ -130,7 +130,7 @@
             // 
             this.txtboxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtboxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtboxPassword.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
+            this.txtboxPassword.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtboxPassword.Location = new System.Drawing.Point(38, 183);
             this.txtboxPassword.Multiline = true;
             this.txtboxPassword.Name = "txtboxPassword";
@@ -151,7 +151,7 @@
             // 
             this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsername.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
+            this.txtUsername.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtUsername.Location = new System.Drawing.Point(38, 125);
             this.txtUsername.Multiline = true;
             this.txtUsername.Name = "txtUsername";

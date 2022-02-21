@@ -57,11 +57,11 @@ namespace Voting_App
             /// ------------------
             elections = SqliteDataAccess.LoadElections(thisModel, _loggedInUser.Id);
 
-            /// Remove elections that have started or ended from the list
+            /// Remove elections that have ended from the list
             /// ---------------------------------------------------------
             foreach (Election election in elections.ToList())
             {
-                if (Convert.ToDateTime(election.StartDate) < DateTime.Now)
+                if (Convert.ToDateTime(election.EndDate) < DateTime.Now)
                     elections.Remove(election);
             }    
             WireUpElectionList();

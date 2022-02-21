@@ -39,7 +39,6 @@
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblLogOff = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -207,7 +206,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.lblLogOff);
-            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lblUsername);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -223,23 +221,12 @@
             this.lblLogOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLogOff.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogOff.ForeColor = System.Drawing.Color.Black;
-            this.lblLogOff.Location = new System.Drawing.Point(65, 131);
+            this.lblLogOff.Location = new System.Drawing.Point(62, 121);
             this.lblLogOff.Name = "lblLogOff";
             this.lblLogOff.Size = new System.Drawing.Size(46, 11);
             this.lblLogOff.TabIndex = 3;
             this.lblLogOff.Text = "Log Off";
             this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(30, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 11);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Some User Text Here";
             // 
             // lblUsername
             // 
@@ -336,7 +323,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Button btnAddElection;
